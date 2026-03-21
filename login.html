@@ -170,13 +170,16 @@
                     class="text-field w-input"
                     type="password"
                     required=""
-                    data-wf-user-form-input-type="password"/></div>
+                    data-wf-user-form-input-type="password"/>
+                </div>
+
+             <p id="errorMsg" style="color: #ff4d4d; font-size: 14px; margin-top: 8px;"></p>
             <div class="login-button-holder">
                
 
                 <button type="button" onclick="login()" class="w-users-userformbutton button w-button">
-  Log In
-</button>
+                    Log In
+                    </button>
                 <div class="w-users-userformfooter">
                     <span class="field-label">Don&#x27;t have an account?</span>
                     <a href="./sign up.html" class="field-label w-inline-block">Sign Up</a>
@@ -200,33 +203,35 @@ function login(){
 
   let email = document.getElementById("email").value.trim();
   let password = document.getElementById("password").value.trim();
+  let errorMsg = document.getElementById("errorMsg");
 
-  // 🚨 Check empty fields FIRST
+  // Clear old message
+  errorMsg.innerText = "";
+
+  // 🚨 Empty fields
   if(email === "" || password === ""){
-    alert("Please fill in all fields");
+    errorMsg.innerText = "Please fill in all fields";
     return;
   }
 
   let savedEmail = localStorage.getItem("userEmail");
   let savedPassword = localStorage.getItem("userPassword");
 
+  // 🚨 No account
   if(!savedEmail || !savedPassword){
-    alert("No account found, please sign up first");
-    window.location.href = "sign up.html";
+    errorMsg.innerText = "No account found. Please sign up.";
     return;
   }
 
-  if(email === savedEmail && password === savedPassword){
-
-    localStorage.setItem("isLoggedIn", "true");
-    window.location.href = "dashboard.html";
-
-  } else {
-
-    alert("Incorrect email or password");
-
+  // 🚨 Wrong credentials
+  if(email !== savedEmail || password !== savedPassword){
+    errorMsg.innerText = "Incorrect email or password";
+    return;
   }
 
+  // ✅ Success
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.href = "dashboard.html";
 }
 </script>
 </body>

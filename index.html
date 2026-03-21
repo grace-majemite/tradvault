@@ -183,8 +183,7 @@
                 value="Register"
               >
             </div>
-          </form> 
-            
+          </form>
             
           </div>
         </div>
@@ -387,19 +386,33 @@ Market, Limit, Stop Limit, and Auction Mode orders.</p>
             </div>
           </div>
           <div class="form-block w-form">
-            <form id="Early-Access-Emails" name="wf-form-Early-Access-Emails" data-name="Early Access Emails"
-              method="get" class="form-holder" data-wf-page-id="66310c979862bf126bda491e"
-              data-wf-element-id="8ed71055-6ae7-5324-a6d4-54fc76e0e2eb">
-              <div class="form"><input class="text-field w-input" maxlength="256" name="email" data-name="Email"
-                  placeholder="Satoshi@nakamoto.com" type="email" id="Early-Access-Emails" required=""><input type="submit"
-                  data-wait="..." class="submit-button w-button" value="Register"></div>
-            </form>
-            <div class="thank-you-message w-form-done">
-              <div><span class="white-text">Thank you! </span><br>Your submission has been received!</div>
+            <form
+            id="earlyForm2"
+            name="wf-form-Early-Access-Emails"
+            data-name="Early Access Emails"
+            method="get"
+            class="form-holder"
+            data-wf-page-id="66310c979862bf126bda491e"
+            data-wf-element-id="8ed71055-6ae7-5324-a6d4-54fc76e0e2eb"
+          >
+            <div class="form">
+              <input
+                class="text-field w-input"
+                maxlength="256"
+                name="email"
+                placeholder="Satoshi@nakamoto.com"
+                type="email"
+                id="emailInput2"
+                required
+              >
+                          
+              <input
+                type="submit"
+                class="submit-button w-button"
+                value="Register">
             </div>
-            <div class="error-message w-form-fail">
-              <div><span class="white-text">Oops! <br></span>Something went wrong! Try again later</div>
-            </div>
+          </form>
+           
           </div>
         </div>
         <div class="cta-app-wrapper">
@@ -494,17 +507,46 @@ Terms and conditions</a></div>
 
     <script src="//code.jivosite.com/widget/fkoNjh9mSP" async></script>
 
-    <script>
-document.getElementById("earlyForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // stop normal form submit
+    <!-- ✅ SCRIPT TO REDIRECT AND PASS EMAIL -->
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
 
-  const email = document.getElementById("emailInput").value;
+  // 🔥 FIRST FORM
+  const form1 = document.getElementById("earlyForm");
 
-  // redirect with email in URL
-  window.location.href = "sign up.html?email=" + encodeURIComponent(email);
+  if (form1) {
+    form1.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("emailInput").value.trim();
+
+      if (email === "") return;
+
+      window.location.href = "sign-up.html?email=" + encodeURIComponent(email);
+    });
+  }
+
+  // 🔥 SECOND FORM
+  const form2 = document.getElementById("earlyForm2");
+
+  if (form2) {
+    form2.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("emailInput2").value.trim();
+
+      if (email === "") return;
+
+      window.location.href = "sign-up.html?email=" + encodeURIComponent(email);
+    });
+  }
+
 });
 </script>
 
+    
+
+    
    <script>
     // Strong removal for exported / self-hosted sites only
     (function () {

@@ -445,16 +445,13 @@
     <div class="text-field-holder">
     <label for="Email" class="field-label">Email</label>
     <input
-        id="email"
-
-        placeholder="email"
-        maxlength="256"
-        name="Email"
-        class="text-field w-input"
         type="email"
-        autoComplete="username"
-        required=""
-        data-wf-user-form-input-type="email"/></div>
+        id="signupEmail"
+        class="text-field w-input"
+        placeholder="Email"
+        required
+        >
+    </div>
    
     <div class="text-field-holder">
         <label for="Password" class="field-label">Password</label>
@@ -467,7 +464,10 @@
             class="text-field w-input"
             type="password"
             required=""
-            data-wf-user-form-input-type="password"/></div>
+            data-wf-user-form-input-type="password"/>
+        </div>
+
+        <p id="errorMsg" style="color: #ff4d4d; font-size: 14px; margin-top: 8px;"></p>
    
     <div class="login-button-holder">
        
@@ -496,25 +496,33 @@
    <script>
 function signup(){
 
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let errorMsg = document.getElementById("errorMsg");
 
-  // Check if user already exists
-  let savedEmail = localStorage.getItem("userEmail");
+  // Clear old message
+  errorMsg.innerText = "";
 
-  if(savedEmail === email){
-    alert("Account already exists, please login");
-    window.location.href = "login.html";
+  // 🚨 Empty check
+  if(email === "" || password === ""){
+    errorMsg.innerText = "Please fill in all fields";
     return;
   }
-  
 
-  // Save new user
+  let savedEmail = localStorage.getItem("userEmail");
+
+  // 🚨 Existing account
+  if(savedEmail === email){
+    errorMsg.innerText = "Account already exists. Please log in.";
+    return;
+  }
+
+  // Save user
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
   localStorage.setItem("isLoggedIn", "true");
 
-  // Go to dashboard (no alert)
+  // Redirect
   window.location.href = "dashboard.html";
 }
 </script>

@@ -2103,6 +2103,13 @@ textarea.w-input, textarea.w-select {
   --colors--hoved-color: #1d1b16;
 }
 
+#errorMsg {
+  background: rgba(255, 77, 77, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
 .w-commerce-commercecartwrapper {
   display: inline-block;
   position: relative;
