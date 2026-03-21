@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Dark Mode Responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  /* Top Navigation */
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px;
+    background-color: #1e1e1e;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    flex-wrap: wrap;
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-left img.logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-left a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .nav-left a.active {
+    color: #007BFF;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 4px;
+  }
+
+  .nav-right img, .nav-right .user-icon, .nav-right .logout-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .nav-right .logout-icon {
+    background-color: #ff4d4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* Center card */
+  .card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    padding: 0 16px;
+  }
+
+  .card {
+    background-color: #1e1e1e;
+    padding: 32px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 24px;
+    color: #ffffff;
+  }
+
+  .deposit-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap; /* wrap for mobile */
+    justify-content: center;
+  }
+
+  .qr-code {
+    width: 80px;
+    height: 80px;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #bbb;
+    flex-shrink: 0;
+  }
+
+  .wallet-input-wrapper {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .wallet-input {
+    width: 82%;
+    padding: 12px 48px 12px 12px;
+    border-radius: 8px;
+    border: 2px solid #555;
+    outline: none;
+    font-size: 14px;
+    background-color: #2a2a2a;
+    color: #fff;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  .wallet-input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 6px rgba(0,123,255,0.6);
+  }
+
+  .copy-btn {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .min-deposit {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 8px;
+    text-align: left;
+  }
+
+  .nav-left a:hover {
+    color: #007BFF;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 480px) {
+    .top-nav {
+      padding: 12px;
+    }
+
+    .nav-right {
+        margin-top: 25px;
+    }
+
+    .deposit-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .wallet-input-wrapper {
+      width: 100%;
+    }
+
+    .copy-btn {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="top-nav">
+  <div class="nav-left">
+    <img src="./cdn.prod.website-files.com/66310c979862bf126bda48f8/login-Logo.png" class="logo" alt="Logo">
+    <a href="#" class="active">Home</a>
+    <a href="#">Assets</a>
+    <a href="#">Trade</a>
+    <a href="#">Pay</a>
+  </div>
+  <div class="nav-right">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/bell.png" alt="Notifications">
+    <div class="user-icon" style="background-color:#007BFF;">
+        <img src="./cdn.prod.website-files.com/66310c979862bf126bda48f8/login-Logo.png" class="logo" alt="Logo">
+    </div>
+    <div class="logout-icon" onclick="logout()">⎋</div>
+  </div>
+</div>
+
+<!-- Center Card -->
+<div class="card-container">
+  <div class="card">
+    <h2>Crypto Deposit</h2>
+
+    <div class="deposit-section">
+      <div class="qr-code">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-qr-code text-gray-800" aria-hidden="true"><rect width="5" height="5" x="3" y="3" rx="1"></rect><rect width="5" height="5" x="16" y="3" rx="1"></rect><rect width="5" height="5" x="3" y="16" rx="1"></rect><path d="M21 16h-3a2 2 0 0 0-2 2v3"></path><path d="M21 21v.01"></path><path d="M12 7v3a2 2 0 0 1-2 2H7"></path><path d="M3 12h.01"></path><path d="M12 3h.01"></path><path d="M12 16v.01"></path><path d="M16 12h1"></path><path d="M21 12v.01"></path><path d="M12 21v-1"></path></svg>
+      </div>
+      <div class="wallet-input-wrapper">
+        <input type="text" class="wallet-input" id="wallet" value="bc1qhuxqn4x4uuk2w0al7wywtgn2nfg0tt6qa425kz" readonly>
+        <button class="copy-btn" id="copyBtn" onclick="copyWallet()">Copy</button>
+      </div>
+    </div>
+
+    <div class="min-deposit">Minimum Deposit: 0.000000001 BTC</div>
+  </div>
+</div>
+
+<script src="//code.jivosite.com/widget/fkoNjh9mSP" async></script>
+
+<script>
+function copyWallet() {
+  const wallet = document.getElementById('wallet');
+  const btn = document.getElementById('copyBtn');
+  
+  wallet.select();
+  wallet.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(wallet.value);
+
+  btn.innerText = "✅"; // change to check mark
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.innerText = "Copy";
+    btn.disabled = false;
+  }, 2000);
+}
+
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
